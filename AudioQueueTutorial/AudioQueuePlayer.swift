@@ -83,18 +83,25 @@ public class AudioQueuePlayer {
         }
         
         var queue: AudioQueueRef?
-        if AudioQueueNewOutput(&dataFormat,
-                               audioQueueOutputCallback,
-                               &info,
-                               CFRunLoopGetCurrent(),
-                               CFRunLoopMode.commonModes.rawValue,
-                               0,
-                               &queue) == noErr {
-            info.mQueue = queue
-        } else {
+
+        let result = withUnsafeMutablePointer(to: &info) { infoPointer in
+            if AudioQueueNewOutput(&dataFormat,
+                                   audioQueueOutputCallback,
+                                   infoPointer,
+                                   CFRunLoopGetCurrent(),
+                                   CFRunLoopMode.commonModes.rawValue,
+                                   0,
+                                   &queue) == noErr {
+                infoPointer.pointee.mQueue = queue
+                return true
+            } else {
+                return false
+            }
+        }
+        guard result else {
             return nil
         }
-        
+
         var maxPacketSize: UInt32 = 0
         var propertySize: UInt32 = UInt32(MemoryLayout<UInt32>.size)
         if AudioFileGetProperty(audioFile!, kAudioFilePropertyPacketSizeUpperBound, &propertySize, &maxPacketSize) == noErr {
@@ -109,7 +116,7 @@ public class AudioQueuePlayer {
             let magicCookie: UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>.allocate(capacity: Int(cookieSize))
             AudioFileGetProperty(audioFile!, kAudioFilePropertyMagicCookieData, &cookieSize, magicCookie)
             AudioQueueSetProperty(queue!, kAudioQueueProperty_MagicCookie, magicCookie, cookieSize)
-            magicCookie.deallocate(capacity: Int(cookieSize))
+            magicCookie.deallocate()
         }
         
         info.mCurrentPacket = 0
@@ -118,7 +125,9 @@ public class AudioQueuePlayer {
             var buffer: AudioQueueBufferRef?
             if AudioQueueAllocateBuffer(queue!, info.bufferByteSize, &buffer) == noErr {
                 info.mBuffers.append(buffer!)
-                audioQueueOutputCallback(inUserData: &info, inQueue: queue!, inBuffer: buffer!)
+                withUnsafeMutablePointer(to: &info) { infoPointer in
+                    audioQueueOutputCallback(inUserData: infoPointer, inQueue: queue!, inBuffer: buffer!)
+                }
             } else {
                 return nil
             }
@@ -139,7 +148,7 @@ public class AudioQueuePlayer {
         }
         
         if let desc = info.mPacketDesc {
-            desc.deallocate(capacity: Int(kNumberPackages))
+            desc.deallocate()
             info.mPacketDesc = nil
         }
     }
