@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		718143E72D5DEF4700635BBD /* Avid.flac in Resources */ = {isa = PBXBuildFile; fileRef = 718143E62D5DEF4700635BBD /* Avid.flac */; };
+		71CDE7492D5E769500A07100 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712F4FA92D5E748100C60A24 /* AVKit.framework */; };
 		F2DCC5711EA73F99002DFF8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DCC5701EA73F99002DFF8C /* AppDelegate.swift */; };
 		F2DCC5731EA73F99002DFF8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DCC5721EA73F99002DFF8C /* ViewController.swift */; };
 		F2DCC5761EA73F99002DFF8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2DCC5741EA73F99002DFF8C /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		712F4FA92D5E748100C60A24 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		718143E62D5DEF4700635BBD /* Avid.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avid.flac; sourceTree = "<group>"; };
 		F2DCC56D1EA73F99002DFF8C /* AudioQueueTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioQueueTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DCC5701EA73F99002DFF8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,16 +37,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71CDE7492D5E769500A07100 /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		712F4FA82D5E748100C60A24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				712F4FA92D5E748100C60A24 /* AVKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F2DCC5641EA73F99002DFF8C = {
 			isa = PBXGroup;
 			children = (
 				F2DCC56F1EA73F99002DFF8C /* AudioQueueTutorial */,
+				712F4FA82D5E748100C60A24 /* Frameworks */,
 				F2DCC56E1EA73F99002DFF8C /* Products */,
 			);
 			sourceTree = "<group>";
