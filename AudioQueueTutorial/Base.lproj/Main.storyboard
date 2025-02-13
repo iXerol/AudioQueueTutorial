@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,24 +20,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4g-An-lKx">
-                                <rect key="frame" x="172.5" y="318.5" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4g-An-lKx">
+                                <rect key="frame" x="163.5" y="309.5" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="IgH-0S-wNt"/>
+                                    <constraint firstAttribute="width" constant="48" id="bZb-SK-2KS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="96"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="play.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
                                 <connections>
                                     <action selector="playButtonClickedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tjn-IO-Exx"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="53z-7I-xxp">
+                                <rect key="frame" x="48" y="259.5" width="279" height="31"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cS-X0-oKJ" userLabel="Current Time Label">
+                                <rect key="frame" x="50" y="294.5" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erE-em-jgK">
+                                <rect key="frame" x="279" y="294.5" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="l4g-An-lKx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CLW-2X-onp"/>
+                            <constraint firstItem="7cS-X0-oKJ" firstAttribute="leading" secondItem="53z-7I-xxp" secondAttribute="leading" id="Id2-Br-3q3"/>
+                            <constraint firstItem="erE-em-jgK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l4g-An-lKx" secondAttribute="trailing" constant="8" symbolic="YES" id="NmQ-tD-yKm"/>
+                            <constraint firstItem="l4g-An-lKx" firstAttribute="top" secondItem="53z-7I-xxp" secondAttribute="bottom" constant="20" id="PJa-0Y-mXe"/>
+                            <constraint firstItem="53z-7I-xxp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c9r-Xy-pxW"/>
+                            <constraint firstItem="7cS-X0-oKJ" firstAttribute="top" secondItem="53z-7I-xxp" secondAttribute="bottom" constant="5" id="dvT-sr-ZdW"/>
+                            <constraint firstItem="53z-7I-xxp" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="-100" id="eo6-f7-zlo"/>
+                            <constraint firstItem="l4g-An-lKx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7cS-X0-oKJ" secondAttribute="trailing" constant="8" symbolic="YES" id="h2b-qa-ZAu"/>
+                            <constraint firstItem="erE-em-jgK" firstAttribute="trailing" secondItem="53z-7I-xxp" secondAttribute="trailing" id="hhy-0U-7xd"/>
+                            <constraint firstItem="erE-em-jgK" firstAttribute="top" secondItem="53z-7I-xxp" secondAttribute="bottom" constant="5" id="j1S-Lt-ObC"/>
                             <constraint firstItem="l4g-An-lKx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLq-vk-22t"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="7cS-X0-oKJ" id="Pc5-vN-Xr4"/>
+                        <outlet property="durationLabel" destination="erE-em-jgK" id="BLh-bk-0DB"/>
+                        <outlet property="progressSlider" destination="53z-7I-xxp" id="VOi-Pu-8Hb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-2"/>
+            <point key="canvasLocation" x="140" y="-2.2488755622188905"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play.fill" catalog="system" width="120" height="128"/>
+    </resources>
 </document>
