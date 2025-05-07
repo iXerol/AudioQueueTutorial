@@ -60,7 +60,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rzM-ZG-e5p" firstAttribute="top" secondItem="l4g-An-lKx" secondAttribute="bottom" constant="10" id="8og-YT-5Df"/>
                             <constraint firstItem="l4g-An-lKx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CLW-2X-onp"/>
@@ -90,5 +90,8 @@
     </scenes>
     <resources>
         <image name="play.fill" catalog="system" width="120" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
